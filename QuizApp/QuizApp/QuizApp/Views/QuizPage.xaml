@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="QuizApp.Views.QuizPage"
+             Title="Super Quiz 2.0 Power!!!">
+    <Grid BackgroundColor="#777">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               Text="My question ASHDASUDASHGDVJAFHASCAAS ASD AD ASD AS AYSDSVDGHASVDHGASVDAHGSVC dps de inconstitucionalisimamente"
+               HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+               HeightRequest="100"/>
+
+        <Button Grid.Row="1" Grid.Column="0"
+                Margin="10, 0, 0, 0"
+                Text="Yes" BackgroundColor="Blue" HeightRequest="70"/>
+
+        <Button Grid.Row="1" Grid.Column="1"
+                Margin="0, 0, 10, 0"
+                Text="No" BackgroundColor="Red" HeightRequest="70"/>
+
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                Text="Next" BackgroundColor="Green" HeightRequest="70"/>
+
+    </Grid>
+</ContentPage>

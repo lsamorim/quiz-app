@@ -5,7 +5,28 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="QuizApp.Views.MainPage"
              Title="MainPage">
-  <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <Label Text="{Binding Title}" />
-  </StackLayout>
+
+    <Grid Padding="0, 20, 0, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+        <!--<BoxView BackgroundColor="Lime" />
+        <BoxView BackgroundColor="Black" Grid.Row="1"/>
+        <BoxView BackgroundColor="Lime" Grid.Row="2"/>-->
+        <Label Grid.Row="0"
+               Text="Super Quiz 2.0 Power" 
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+        />
+
+        <Button Grid.Row="1"
+                Text="Start"
+                BackgroundColor="Green"
+                HeightRequest="70"
+                VerticalOptions="End"
+                Command="{Binding OnStartCommand}"
+        />
+    </Grid>
 </ContentPage>

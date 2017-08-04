@@ -9,6 +9,10 @@ namespace QuizApp.ViewModels
 {
     public class MainPageViewModel : BindableBase, INavigationAware
     {
+        #region Properties
+
+        private readonly INavigationService _navigationService;
+
         private string _title;
         public string Title
         {
@@ -16,10 +20,18 @@ namespace QuizApp.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public MainPageViewModel()
-        {
+        public DelegateCommand OnStartCommand { get; private set; }
 
+        #endregion
+
+        public MainPageViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+
+            OnStartCommand = new DelegateCommand(OnStartClick);
         }
+
+        #region Navigation Flow
 
         public void OnNavigatedFrom(NavigationParameters parameters)
         {
@@ -35,6 +47,13 @@ namespace QuizApp.ViewModels
         {
             if (parameters.ContainsKey("title"))
                 Title = (string)parameters["title"] + " and Prism";
+        }
+
+        #endregion
+
+        public void OnStartClick()
+        {
+            _navigationService.NavigateAsync("/NavigationPage/QuizPage");
         }
     }
 }
