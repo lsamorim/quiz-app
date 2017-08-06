@@ -47,6 +47,15 @@ namespace QuizApp.ViewModels
             set { SetProperty(ref _score, value); }
         }
 
+        private string _resultImage;
+        public string ResultImage
+        {
+            get { return _resultImage; }
+            set { SetProperty(ref _resultImage, value); }
+        }
+
+        private const string RIGHT_ANSWER_IMAGE_SOURCE = "right.png", WRONG_ANSWER_IMAGE_SOURCE = "wrong.png";
+
         public DelegateCommand YesCommand { get; private set; }
 
         public DelegateCommand NoCommand { get; private set; }
@@ -63,8 +72,8 @@ namespace QuizApp.ViewModels
             _game = game;
             _game.Reset();
 
-            YesCommand = new DelegateCommand(OnYesClick);
-            NoCommand = new DelegateCommand(OnNoClick);
+            YesCommand = new DelegateCommand(OnYesClick, () => !IsAnswered).ObservesProperty(() => IsAnswered);
+            NoCommand = new DelegateCommand(OnNoClick, () => !IsAnswered).ObservesProperty(() => IsAnswered);
             NextCommand = new DelegateCommand(OnNextClick).ObservesCanExecute(() => IsAnswered);
             EndCommand = new DelegateCommand(OnEndClick).ObservesCanExecute(() => IsAnswered);
 
@@ -97,7 +106,9 @@ namespace QuizApp.ViewModels
 
             Answer = _game.CurrentQuestion.Answer.Text;
 
-            _game.AnswerCurrentQuestion(yes);
+            var isRight =_game.AnswerCurrentQuestion(yes);
+            ResultImage = isRight ? RIGHT_ANSWER_IMAGE_SOURCE : WRONG_ANSWER_IMAGE_SOURCE;
+
             Score = _game.Score;
         }
 

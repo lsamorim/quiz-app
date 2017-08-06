@@ -37,8 +37,13 @@
 
         <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsAnswered}"
                      HeightRequest="200">
-            <Label Text="Answer" Font="Bold"
-               HorizontalTextAlignment="Center" VerticalTextAlignment="Start"/>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="30">
+                <Label Text="Answer" Font="Bold"
+                       HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                <Image Source="{Binding ResultImage}" HorizontalOptions="Start" VerticalOptions="Center"/>
+            </StackLayout>
+            
             <Label Text="{Binding Answer}"
                HorizontalTextAlignment="Center" VerticalTextAlignment="Start"
                HeightRequest="100"/>
