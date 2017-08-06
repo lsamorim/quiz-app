@@ -22818,16 +22818,16 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "E:\\Lucas\\Dev\\Learning\\Xamarin\\quiz-app\\QuizApp\\QuizApp\\QuizApp.UWP\\QuizApp.UWP.csproj",
+      "projectUniqueName": "e:\\Lucas\\Dev\\Learning\\Xamarin\\quiz-app\\QuizApp\\QuizApp\\QuizApp.UWP\\QuizApp.UWP.csproj",
       "projectName": "QuizApp.UWP",
-      "projectPath": "E:\\Lucas\\Dev\\Learning\\Xamarin\\quiz-app\\QuizApp\\QuizApp\\QuizApp.UWP\\QuizApp.UWP.csproj",
-      "projectJsonPath": "E:\\Lucas\\Dev\\Learning\\Xamarin\\quiz-app\\QuizApp\\QuizApp\\QuizApp.UWP\\project.json",
+      "projectPath": "e:\\Lucas\\Dev\\Learning\\Xamarin\\quiz-app\\QuizApp\\QuizApp\\QuizApp.UWP\\QuizApp.UWP.csproj",
+      "projectJsonPath": "e:\\Lucas\\Dev\\Learning\\Xamarin\\quiz-app\\QuizApp\\QuizApp\\QuizApp.UWP\\project.json",
       "projectStyle": "ProjectJson",
       "frameworks": {
         "uap10.0": {
           "projectReferences": {
-            "E:\\Lucas\\Dev\\Learning\\Xamarin\\quiz-app\\QuizApp\\QuizApp\\QuizApp\\QuizApp.csproj": {
-              "projectPath": "E:\\Lucas\\Dev\\Learning\\Xamarin\\quiz-app\\QuizApp\\QuizApp\\QuizApp\\QuizApp.csproj"
+            "e:\\Lucas\\Dev\\Learning\\Xamarin\\quiz-app\\QuizApp\\QuizApp\\QuizApp\\QuizApp.csproj": {
+              "projectPath": "e:\\Lucas\\Dev\\Learning\\Xamarin\\quiz-app\\QuizApp\\QuizApp\\QuizApp\\QuizApp.csproj"
             }
           }
         }

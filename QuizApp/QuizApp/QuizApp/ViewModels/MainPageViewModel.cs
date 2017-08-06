@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using QuizApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace QuizApp.ViewModels
         #region Properties
 
         private readonly INavigationService _navigationService;
+        private readonly GameManager _game;
 
         private string _title;
         public string Title
@@ -20,15 +22,16 @@ namespace QuizApp.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public DelegateCommand OnStartCommand { get; private set; }
+        public DelegateCommand StartCommand { get; private set; }
 
         #endregion
 
-        public MainPageViewModel(INavigationService navigationService)
+        public MainPageViewModel(INavigationService navigationService, GameManager game)
         {
             _navigationService = navigationService;
+            _game = game;
 
-            OnStartCommand = new DelegateCommand(OnStartClick);
+            StartCommand = new DelegateCommand(OnStartClick);
         }
 
         #region Navigation Flow
@@ -51,9 +54,22 @@ namespace QuizApp.ViewModels
 
         #endregion
 
-        public void OnStartClick()
+        public async void OnStartClick()
         {
-            _navigationService.NavigateAsync("/NavigationPage/QuizPage");
+            _game.Questions.Add(
+                new Question()
+                {
+                    Text = "O doce mais doce que o doce de batata doce é o doce de batata doce???",
+                    Answer = new Answer()
+                    {
+                        Text = "Sim! O doce mais doce que o doce de batata doce é o doce de batata doce!!"
+                    }
+                }
+            );
+
+            await System.Threading.Tasks.Task.Delay(2000);
+
+            await _navigationService.NavigateAsync("/NavigationPage/QuizPage");
         }
     }
 }

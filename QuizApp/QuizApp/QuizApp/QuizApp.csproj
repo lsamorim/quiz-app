@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\Answer.cs" />
+    <Compile Include="Models\GameManager.cs" />
+    <Compile Include="Models\Question.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\QuizPageViewModel.cs" />

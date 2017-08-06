@@ -26,7 +26,7 @@
                 BackgroundColor="Green"
                 HeightRequest="70"
                 VerticalOptions="End"
-                Command="{Binding OnStartCommand}"
+                Command="{Binding StartCommand}"
         />
     </Grid>
 </ContentPage>

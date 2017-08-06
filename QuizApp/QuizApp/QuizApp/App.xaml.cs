@@ -1,4 +1,6 @@
-﻿using Prism.Unity;
+﻿using Microsoft.Practices.Unity;
+using Prism.Unity;
+using QuizApp.Models;
 using QuizApp.Views;
 using Xamarin.Forms;
 
@@ -7,7 +9,7 @@ namespace QuizApp
     public partial class App : PrismApplication
     {
         public App(IPlatformInitializer initializer = null) : base(initializer) { }
-
+        
         protected override void OnInitialized()
         {
             InitializeComponent();
@@ -22,6 +24,8 @@ namespace QuizApp
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
             Container.RegisterTypeForNavigation<QuizPage>();
+
+            Container.RegisterInstance(typeof(GameManager), new GameManager());
         }
     }
 }
