@@ -27,6 +27,7 @@ namespace QuizApp.Models
         public void Reset()
         {
             Score = 0;
+            _currentQuestionIndex = -1;
         }
 
         public bool AnswerCurrentQuestion(bool yes)

@@ -93,7 +93,7 @@ namespace QuizApp.ViewModels
                 }
             };
 
-            await System.Threading.Tasks.Task.Delay(2000);
+            //await System.Threading.Tasks.Task.Delay(2000);
 
             try
             {
