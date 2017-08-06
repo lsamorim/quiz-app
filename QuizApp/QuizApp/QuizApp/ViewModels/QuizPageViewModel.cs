@@ -26,11 +26,25 @@ namespace QuizApp.ViewModels
             set { SetProperty(ref _answer, value); }
         }
 
-        private bool _answered;
-        public bool Answered
+        private bool _isAnswered;
+        public bool IsAnswered
         {
-            get { return _answered; }
-            set { SetProperty(ref _answered, value); }
+            get { return _isAnswered; }
+            set { SetProperty(ref _isAnswered, value); }
+        }
+
+        private bool _isLastQuestion;
+        public bool IsLastQuestion
+        {
+            get { return _isLastQuestion; }
+            set { SetProperty(ref _isLastQuestion, value); }
+        }
+
+        private int _score;
+        public int Score
+        {
+            get { return _score; }
+            set { SetProperty(ref _score, value); }
         }
 
         public DelegateCommand YesCommand { get; private set; }
@@ -39,28 +53,32 @@ namespace QuizApp.ViewModels
 
         public DelegateCommand NextCommand { get; private set; }
 
+        public DelegateCommand EndCommand { get; private set; }
+
         #endregion
 
         public QuizPageViewModel(INavigationService navigationService, GameManager game)
         {
             _navigationService = navigationService;
             _game = game;
+            _game.Reset();
 
-            YesCommand = new DelegateCommand(OnYesClick, () => { return !Answered; });
+            YesCommand = new DelegateCommand(OnYesClick);
             NoCommand = new DelegateCommand(OnNoClick);
-            NextCommand = new DelegateCommand(OnNextClick).ObservesCanExecute(() => Answered);
+            NextCommand = new DelegateCommand(OnNextClick).ObservesCanExecute(() => IsAnswered);
+            EndCommand = new DelegateCommand(OnEndClick).ObservesCanExecute(() => IsAnswered);
 
-            ShowFirstQuestion();
+            ShowNextQuestion();
         }
         
         public void OnYesClick()
         {
-            ShowAnswer();
+            TryAnswer(true);
         }
 
         public void OnNoClick()
         {
-            ShowAnswer();
+            TryAnswer(false);
         }
 
         public void OnNextClick()
@@ -68,22 +86,29 @@ namespace QuizApp.ViewModels
             ShowNextQuestion();
         }
 
-        protected void ShowFirstQuestion()
+        public void OnEndClick()
         {
-            var question = _game.CurrentQuestion;
-            Question = question.Text;
+            _navigationService.NavigateAsync("/MainPage");
+        }
+        
+        protected void TryAnswer(bool yes)
+        {
+            IsAnswered = true;
+
+            Answer = _game.CurrentQuestion.Answer.Text;
+
+            _game.AnswerCurrentQuestion(yes);
+            Score = _game.Score;
         }
 
         protected void ShowNextQuestion()
         {
-            var question = _game.NextQuestion();
-            Question = question.Text;
-        }
+            IsAnswered = false;
 
-        protected void ShowAnswer()
-        {
-            Answered = true;
-            Answer = _game.CurrentQuestion.Answer.Text;
+            var question = _game.NextQuestion();
+            IsLastQuestion = _game.IsLastQuestion();
+
+            Question = question.Text;
         }
     }
 }
